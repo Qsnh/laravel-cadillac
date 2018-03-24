@@ -13,7 +13,7 @@ composer require qsnh/laravel-cadillac dev-master --dev
 > It's recommended use it in develop environment.
 
 
-## 命令
+## Command
 
 ```
 php artisan cadillac [tableName] --export --html
