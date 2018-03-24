@@ -13,10 +13,7 @@
     "autoload": {
         "psr-4": {
             "Qsnh\\Cadillac\\": "src"
-        },
-        "files": [
-            "autoload.php"
-        ]
+        }
     },
     "require": {
     },
