@@ -1,0 +1,31 @@
+{
+    "name": "qsnh/laravel-cadillac",
+    "description": "A database tool.",
+    "keywords": ["laravel", "database"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "XiaoTeng",
+            "email": "616896861@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Qsnh\\Cadillac\\": "src"
+        },
+        "files": [
+            "autoload.php"
+        ]
+    },
+    "require": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Qsnh\\Cadillac\\CadillacServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
