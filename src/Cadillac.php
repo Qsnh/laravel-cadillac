@@ -5,7 +5,6 @@ namespace Qsnh\Cadillac;
 use DB;
 use Exception;
 use Illuminate\Console\Command;
-use cebe\markdown\GithubMarkdown;
 
 class Cadillac extends Command
 {
