@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm">
                 <h1 class="text-center" style="line-height: 123px;">Laravel-Cadillac <small>{{date('Y/m/d H:i:s')}}</small></h1>
-                <h3>Tables</h3>
+                <h3>Tables({{count($tables)}})</h3>
 
                 @foreach($tables as $table => $columns)
                 <h4>{{$table}}</h4>

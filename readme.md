@@ -4,7 +4,7 @@ This package develop on laravel, please confirm use it on laravel project.In the
 
 [中文文档](chinese.md)
 
-## Install
+## Installation
 
 ```
 composer require qsnh/laravel-cadillac dev-master --dev
@@ -57,3 +57,7 @@ php artisan cadillac --export --html
 ## Author
 
 [Qsnh](https://github.com/Qsnh)
+
+## License
+
+**MIT**
