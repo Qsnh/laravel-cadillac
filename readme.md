@@ -53,6 +53,24 @@ php artisan cadillac --export --html
 
 ![php artisan cadillac --export --html](https://user-images.githubusercontent.com/12671205/37866411-7c6fcb8c-2fc5-11e8-92b3-5ccaf8f3b5d2.gif)
 
+#### Print one table all fields
+
+```
+php artisan cadillac --f=users
+```
+
+output:
+
+```
+id,name,email,password,remember_token,created_at,updated_at
+```
+
+and if u add `--q` params,it will print:
+
+```
+'id','name','email','password','remember_token','created_at','updated_at'
+```
+
 
 ## Author
 

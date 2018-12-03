@@ -5,6 +5,7 @@ namespace Qsnh\Cadillac;
 use DB;
 use Exception;
 use Illuminate\Console\Command;
+use cebe\markdown\GithubMarkdown;
 
 class Cadillac extends Command
 {
@@ -13,7 +14,7 @@ class Cadillac extends Command
      *
      * @var string
      */
-    protected $signature = 'cadillac {table?} {--export} {--html}';
+    protected $signature = 'cadillac {table?} {--export} {--html} {--f=} {--q}';
 
     /**
      * The console command description.
@@ -52,6 +53,10 @@ class Cadillac extends Command
         $options = $this->options();
         $export = $options['export'];
         $toHtml = $options['html'];
+        $field = $options['f'];
+        if ($field) {
+            return $this->ouputTableFileds($field);
+        }
 
         if ($table) {
             return $this->executeTableAction($table, $export, $toHtml);
@@ -68,6 +73,23 @@ class Cadillac extends Command
         }
 
         $this->table(['Table'], $rows);
+    }
+
+    /**
+     * ouput table fields.
+     * 
+     * @return void
+     */
+    protected function ouputTableFileds($tableName) : void
+    {
+        $columns = collect($this->getTableColumns($tableName));
+        $columns = $columns->pluck('COLUMN_NAME');
+        if ($this->options()['q']) {
+            $columns = $columns->map(function ($value) {
+                return "'{$value}'";
+            });
+        }
+        $this->info(implode(',', $columns->toArray()));
     }
 
     /**

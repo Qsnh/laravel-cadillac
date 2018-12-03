@@ -53,6 +53,28 @@ php artisan cadillac --export --html
 ![php artisan cadillac --export --html](https://user-images.githubusercontent.com/12671205/37866411-7c6fcb8c-2fc5-11e8-92b3-5ccaf8f3b5d2.gif)
 
 
+#### 打印某个表的所有字段
+
+```
+php artisan cadillac --f=users
+```
+
+输出：
+
+```
+id,name,email,password,remember_token,created_at,updated_at
+```
+
+如果增加 `--q` 参数，会输出：
+
+```
+php artisan cadillac --f=users --q
+```
+
+```
+'id','name','email','password','remember_token','created_at','updated_at'
+```
+
 ## 作者
 
 [Qsnh](https://github.com/Qsnh)
