@@ -77,10 +77,10 @@ class Cadillac extends Command
 
     /**
      * ouput table fields.
-     * 
+     *
      * @return void
      */
-    protected function ouputTableFileds($tableName) : void
+    protected function ouputTableFileds($tableName): void
     {
         $columns = collect($this->getTableColumns($tableName));
         $columns = $columns->pluck('COLUMN_NAME');
@@ -100,10 +100,19 @@ class Cadillac extends Command
         $tables = $this->getAllTables();
         $rows = [];
         foreach ($tables as $key => $table) {
+
+            $tableComment = $this->getTableComment($table);
             $columns = $this->getTableColumns($table);
-            $rows[$table] = $columns;
+
+            $tableTitle = $table;
+
+            if ($tableComment) {
+                $tableTitle .= "($tableComment)";
+            }
+            echo $tableTitle, "\n";
+            $rows[$tableTitle] = $columns;
         }
-    
+
         $extension = '.md';
         $viewPath = $this->markdownRenderView;
         if ($toHtml) {
@@ -122,7 +131,7 @@ class Cadillac extends Command
 
     /**
      * Get all tables in database
-     * 
+     *
      * @return array
      */
     protected function getAllTables()
@@ -153,17 +162,32 @@ class Cadillac extends Command
 
     /**
      * Get table columns
-     * 
+     *
      * @param $table string
      * @return array
+     * @throws TableNotFoundException
      */
     protected function getTableColumns($table)
     {
-         $columns = DB::select('select * from information_schema.columns where table_schema = "' . $this->db . '" and table_name = "' . $table . '"');
-        if (! $columns) {
+        $columns = DB::select('select * from information_schema.columns where table_schema = "' . $this->db . '" and table_name = "' . $table . '"');
+        if (!$columns) {
             throw new TableNotFoundException($table);
         }
         return $columns;
+    }
+
+    /**
+     * Get table comment
+     * @param $table
+     * @return string
+     */
+    public function getTableComment($table)
+    {
+        $tableComment = DB::selectOne("select TABLE_COMMENT from information_schema.`TABLES` where TABLE_NAME = '{$table}' and `TABLE_SCHEMA`='{$this->db}';");
+        if (!$tableComment) {
+            return '';
+        }
+        return $tableComment->TABLE_COMMENT;
     }
 
 }
