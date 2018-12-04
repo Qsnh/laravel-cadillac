@@ -165,6 +165,7 @@ class Cadillac extends Command
      *
      * @param $table string
      * @return array
+     * @throws TableNotFoundException
      */
     protected function getTableColumns($table)
     {
@@ -175,6 +176,11 @@ class Cadillac extends Command
         return $columns;
     }
 
+    /**
+     * Get table comment
+     * @param $table
+     * @return string
+     */
     public function getTableComment($table)
     {
         $tableComment = DB::selectOne("select TABLE_COMMENT from information_schema.`TABLES` where TABLE_NAME = '{$table}' and `TABLE_SCHEMA`='{$this->db}';");
