@@ -4,6 +4,9 @@ This package develop on laravel, please confirm use it on laravel project.In the
 
 [中文文档](chinese.md)
 
+## Compatible DB Engines
+- MySQL
+
 ## Installation
 
 ```
